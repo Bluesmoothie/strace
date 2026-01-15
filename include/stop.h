@@ -7,3 +7,9 @@
 #include <sys/uio.h>		//iovec
 #include <stdio.h>			//perror
 #include <stdlib.h>			//exit
+
+//stop.c
+struct	user_regs_struct	get_reg_set(pid_t pid);
+
+//print.c
+void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs);

@@ -76,7 +76,7 @@ void	init_tracing(pid_t pid) {
 }
 
 void	wait_and_print(pid_t pid) {
-	static t_state state = ENTRY;
+	static t_state state = STATE_ENTRY;
 
 	int status;
 	const pid_t wpid = waitpid(pid, &status, 0);
@@ -94,13 +94,13 @@ void	wait_and_print(pid_t pid) {
 	const int event = (status >> 16) & 0xFFFF;
 
 	if (sig == (SIGTRAP | 0x80) && event == 0) {
-		if (state == ENTRY) {
+		if (state == STATE_ENTRY) {
 			decode_entry(pid);
-			state = EXIT;
+			state = STATE_EXIT;
 		}
 		else {
 			decode_exit(pid);
-			state = ENTRY;
+			state = STATE_ENTRY;
 		}
 		return;
     }

@@ -7,8 +7,8 @@
 #include <stdlib.h>			//exit
 
 typedef enum	e_state {
-	ENTRY,
-	EXIT
+	STATE_ENTRY,
+	STATE_EXIT
 }	t_state;
 
 //	ft_trace.c

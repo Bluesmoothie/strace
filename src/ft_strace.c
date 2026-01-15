@@ -14,7 +14,6 @@ void	ft_strace(char** argv, char** envp) {
 }
 
 void	exec_child(char** argv, char** envp) {
-	sleep(2);
 	if (execve(argv[0], argv, envp) == -1)
 		perror("ft_strace: execve");
 	exit(-1);

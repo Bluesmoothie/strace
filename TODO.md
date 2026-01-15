@@ -9,6 +9,7 @@ On signals:
 --- SIGINT {si_signo=SIGINT, si_code=SI_USER, si_pid=...} ---
 +++ killed by SIGINT +++```
 
+When traced execve send SIGTRAP, we need to catch it
 
 différenciation 32/64bits =>
 ptrace(PTRACE_GETREGSET, pid, NT_PRSTATUS, &iov);

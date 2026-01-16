@@ -3,16 +3,12 @@
 static unsigned long long	g_syscall_num = 0;
 
 bool	decode_entry(pid_t pid) {
-	const struct user_regs_struct	regs = get_reg_set(pid);
-	
-	g_syscall_num = regs.orig_rax;
+	g_syscall_num = get_reg_set(pid).orig_rax;
 	return(g_syscall_num == 59);
 }
 
 void	decode_exit(pid_t pid) {
-	const struct user_regs_struct	regs = get_reg_set(pid);
-
-	print_syscall(g_syscall_num, regs);
+	print_syscall(g_syscall_num, get_reg_set(pid));
 }
 
 void	special_stop(pid_t pid) {

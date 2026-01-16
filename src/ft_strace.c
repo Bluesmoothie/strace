@@ -46,7 +46,7 @@ void	init_tracing(pid_t pid) {
 	}
 
 	int status;
-	const pid_t wpid = waitpid(pid, &status, 0);
+	pid_t wpid = waitpid(pid, &status, 0);
 	if (wpid == -1) {
 		perror("ft_strace: waitpid");
 		exit(-1);
@@ -76,12 +76,13 @@ void	init_tracing(pid_t pid) {
 }
 
 void	wait_and_print(pid_t pid) {
-	static t_state state = STATE_ENTRY;
+	static int		execve = 0;			// 0 Not seen 1 Just seen 2 Seen before
+	static t_state	state = STATE_ENTRY;
 
 	int status;
 	const pid_t wpid = waitpid(pid, &status, 0);
 	if (wpid == -1) {
-		perror("ft_strace: PTRACE_SYSCALL");
+		perror("ft_strace: waitpid");
 		exit(-1);
 	}
 
@@ -95,16 +96,22 @@ void	wait_and_print(pid_t pid) {
 
 	if (sig == (SIGTRAP | 0x80) && event == 0) {
 		if (state == STATE_ENTRY) {
-			decode_entry(pid);
+			if (decode_entry(pid) && !execve)
+				execve = 1;
 			state = STATE_EXIT;
 		}
 		else {
-			decode_exit(pid);
+			if (execve)
+				decode_exit(pid);
 			state = STATE_ENTRY;
 		}
 		return;
     }
     else if (sig == SIGTRAP && event != 0) {
+		if (execve == 1) {
+			execve = 2;
+			return;
+		}
 		special_stop(pid);
     }
     else if (sig == SIGTRAP && event == 0) {

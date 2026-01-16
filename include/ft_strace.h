@@ -18,7 +18,7 @@ void	init_tracing(pid_t pid);
 void	wait_and_print(pid_t pid);
 
 //	stop.c
-void	decode_entry(pid_t pid);
+bool	decode_entry(pid_t pid);
 void	decode_exit(pid_t pid);
 void	special_stop(pid_t pid);
 void	other_stop(pid_t pid);

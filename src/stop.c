@@ -1,11 +1,12 @@
 #include "stop.h"
 
-unsigned long long	g_syscall_num = 0;
+static unsigned long long	g_syscall_num = 0;
 
-void	decode_entry(pid_t pid) {
+bool	decode_entry(pid_t pid) {
 	const struct user_regs_struct	regs = get_reg_set(pid);
 	
 	g_syscall_num = regs.orig_rax;
+	return(g_syscall_num == 59);
 }
 
 void	decode_exit(pid_t pid) {

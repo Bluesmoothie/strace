@@ -63,10 +63,10 @@ void	init_tracing(pid_t pid) {
 										| PTRACE_O_TRACEEXEC 
 										| PTRACE_O_TRACEEXIT
 										| PTRACE_O_EXITKILL) == -1) {
-	perror("ft_strace: PTRACE_SETOPTIONS");
-	if (kill(pid, SIGKILL) == -1)
-		perror("ft_strace: kill");
-	exit(-1);
+		perror("ft_strace: PTRACE_SETOPTIONS");
+		if (kill(pid, SIGKILL) == -1)
+			perror("ft_strace: kill");
+		exit(-1);
 	}
 
 	if (ptrace(PTRACE_SYSCALL, pid, 0, 0) == -1) {

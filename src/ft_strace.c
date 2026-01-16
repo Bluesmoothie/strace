@@ -99,25 +99,20 @@ void	wait_and_print(pid_t pid) {
 			if (decode_entry(pid) && !execve)
 				execve = 1;
 			state = STATE_EXIT;
-		}
-		else {
+		} else {
 			if (execve)
 				decode_exit(pid);
 			state = STATE_ENTRY;
 		}
 		return;
-    }
-    else if (sig == SIGTRAP && event != 0) {
-		if (execve == 1) {
-			execve = 2;
-			return;
-		}
+    } else if (execve == 1 && sig == SIGTRAP && event == PTRACE_EVENT_EXEC) {
+		execve = 2;
+		return;
+	} else if (sig == SIGTRAP && event != 0) {
 		special_stop(pid);
-    }
-    else if (sig == SIGTRAP && event == 0) {
+    } else if (sig == SIGTRAP && event == 0) {
 		other_stop(pid);
-    }
-    else {
+    } else {
 		signal_stop(pid);
     }
 }

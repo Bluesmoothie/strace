@@ -8,6 +8,8 @@
 #include <stdio.h>			//perror
 #include <stdlib.h>			//exit
 
+#define NO_RETURN_FUNC(x)	(x == 231)
+
 //stop.c
 struct	user_regs_struct	get_reg_set(pid_t pid);
 

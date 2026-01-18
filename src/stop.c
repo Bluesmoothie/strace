@@ -4,6 +4,8 @@ static unsigned long long	g_syscall_num = 0;
 
 bool	decode_entry(pid_t pid) {
 	g_syscall_num = get_reg_set(pid).orig_rax;
+	if (NO_RETURN_FUNC(g_syscall_num))
+		print_syscall(g_syscall_num, get_reg_set(pid));
 	return(g_syscall_num == 59);
 }
 

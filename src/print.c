@@ -1,10 +1,4 @@
-#include <sys/user.h>		//user_regs_struct
-#include <stdio.h>			//printf
-#include <stdint.h>			//uint32_t
-#include <stdlib.h>			//exit
-
-#include "syscall/syscall_table32.h"
-#include "syscall/syscall_table64.h"
+#include "print.h"
 
 void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs) {
 	unsigned long	args[6];
@@ -46,6 +40,20 @@ void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs)
 	printf("\n");
 }
 
+void	print_ret(unsigned long ret) {
+	printf(" = ");
+	if ((int)ret >= 0)
+		printf("%d", (int)ret);
+	else {
+		printf("-1 ");
+		detail_errno(ret);
+	}
+}
+
+//Very long section, for each function we have:
+//Function signature from linux kernel source
+//Function signature from linux user manual
+
 void	printer_read(unsigned long args[6], unsigned long ret) {
 (void)args;
 (void)ret;
@@ -61,9 +69,11 @@ void	printer_open(unsigned long args[6], unsigned long ret) {
 (void)ret;
 }
 
+//long	sys_close	(unsigned int fd);
+//int	close		(int fd);
 void	printer_close(unsigned long args[6], unsigned long ret) {
-(void)args;
-(void)ret;
+	printf("(%d)", (int)(args[0]));
+	print_ret(ret);
 }
 
 void	printer_stat(unsigned long args[6], unsigned long ret) {
@@ -106,6 +116,8 @@ void	printer_munmap(unsigned long args[6], unsigned long ret) {
 (void)ret;
 }
 
+//long	sys_brk	(unsigned long brk);
+//int	brk		(void *addr);
 void	printer_brk(unsigned long args[6], unsigned long ret) {
 (void)args;
 (void)ret;
@@ -134,4 +146,11 @@ void	printer_ioctl(unsigned long args[6], unsigned long ret) {
 void	printer_pread64(unsigned long args[6], unsigned long ret) {
 (void)args;
 (void)ret;
+}
+
+//long	sys_execve	(const char __user *filename, 	const char __user *const __user *argv, 	const char __user *const __user *envp);
+//int	execve		(const char *pathname, 			char *const _Nullable argv[], 			char *const _Nullable envp[]);
+void	printer_execve(unsigned long args[6], unsigned long ret) {
+	printf("(%s, %p, %p)", (char*)(args[0]), (void*)(args[1]), (void*)(args[2]));
+	print_ret(ret);
 }

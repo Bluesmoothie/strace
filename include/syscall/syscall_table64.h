@@ -1,7 +1,7 @@
 #pragma once
 
 #include "syscall.h"
-#include "print.h"
+#include "printers.h"
 
 #define SYSCALL_MAX64	547
 
@@ -24,4 +24,5 @@ const t_syscall	SYSCALL_TABLE64[SYSCALL_MAX64 + 1] = {
 	[15]	= {"rt_sigreturn", &printer_rt_sigreturn},
 	[16]	= {"ioctl", &printer_ioctl},
 	[17]	= {"pread64", &printer_pread64},
+	[59]	= {"execve", &printer_execve},
 };

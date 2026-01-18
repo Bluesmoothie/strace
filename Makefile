@@ -26,6 +26,7 @@ SRC_FILES			=	main			\
 						ft_strace		\
 						stop			\
 						print			\
+						errno			\
 
 SRC 				= 	$(addprefix $(SRC_DIR), $(addsuffix .cpp, $(SRC_FILES)))
 OBJ 				= 	$(addprefix $(BUILD_DIR), $(addsuffix .o, $(SRC_FILES)))

@@ -164,3 +164,215 @@ void	printer_execve(unsigned long args[6], unsigned long ret) {
 	printf("%s, %p, %p", (char*)(args[0]), (void*)(args[1]), (void*)(args[2]));
 	print_ret(ret);
 }
+
+//long	sys_exit_group(int error_code);
+void	printer_exit_group(unsigned long args[6], unsigned long ret) {
+	printf("0) = ?");
+	(void)args;
+	(void)ret;
+}
+
+void	printer_pwrite64(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_readv(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_writev(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_access(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_pipe(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_select(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_sched_yield(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_mremap(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_msync(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_mincore(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_madvise(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_shmget(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_shmat(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_shmctl(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_dup(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_dup2(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_pause(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_nanosleep(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_getitimer(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_alarm(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_setitimer(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_getpid(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_sendfile(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_socket(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_connect(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_accept(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_sendto(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_recvfrom(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_sendmsg(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_recvmsg(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_shutdown(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_bind(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_listen(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_getsockname(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_getpeername(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_socketpair(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_getsockopt(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_setsockopt(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_clone(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_fork(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}
+
+void	printer_vfork(unsigned long args[6], unsigned long ret) {
+(void)args;
+(void)ret;
+}

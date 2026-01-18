@@ -24,4 +24,4 @@ done < "$input_file"
 
 echo "};" >> "$output_file"
 
-echo "Fichier $output_file généré avec succès."
+echo "File $output_file successfully generated."

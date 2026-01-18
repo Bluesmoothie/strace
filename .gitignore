@@ -4,3 +4,4 @@ test
 a.out
 .vscode
 ext_src/syscall_table*.h
+ext_src/printers.*

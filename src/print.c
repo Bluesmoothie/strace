@@ -88,7 +88,7 @@ void	printer_accept4(unsigned long args[6], unsigned long ret) {
 
 void	printer_access(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_acct(unsigned long args[6], unsigned long ret) {
@@ -118,7 +118,7 @@ void	printer_alarm(unsigned long args[6], unsigned long ret) {
 
 void	printer_arch_prctl(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_bdflush(unsigned long args[6], unsigned long ret) {
@@ -529,7 +529,7 @@ void	printer_fspick(unsigned long args[6], unsigned long ret) {
 
 void	printer_fstat(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_fstat64(unsigned long args[6], unsigned long ret) {
@@ -729,7 +729,7 @@ void	printer_getpriority(unsigned long args[6], unsigned long ret) {
 
 void	printer_getrandom(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_getresgid(unsigned long args[6], unsigned long ret) {
@@ -1144,7 +1144,8 @@ void	printer_mlockall(unsigned long args[6], unsigned long ret) {
 
 void	printer_mmap(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+	printf(") = ");
+    print_addr(ret);
 }
 
 void	printer_mmap2(unsigned long args[6], unsigned long ret) {
@@ -1179,7 +1180,7 @@ void	printer_move_pages(unsigned long args[6], unsigned long ret) {
 
 void	printer_mprotect(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_mpx(unsigned long args[6], unsigned long ret) {
@@ -1274,7 +1275,7 @@ void	printer_munlockall(unsigned long args[6], unsigned long ret) {
 
 void	printer_munmap(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_name_to_handle_at(unsigned long args[6], unsigned long ret) {
@@ -1349,7 +1350,7 @@ void	printer_open_tree_attr(unsigned long args[6], unsigned long ret) {
 
 void	printer_openat(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_openat2(unsigned long args[6], unsigned long ret) {
@@ -1439,7 +1440,7 @@ void	printer_prctl(unsigned long args[6], unsigned long ret) {
 
 void	printer_pread64(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_preadv(unsigned long args[6], unsigned long ret) {
@@ -1454,7 +1455,7 @@ void	printer_preadv2(unsigned long args[6], unsigned long ret) {
 
 void	printer_prlimit64(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_process_madvise(unsigned long args[6], unsigned long ret) {
@@ -1539,7 +1540,7 @@ void	printer_quotactl_fd(unsigned long args[6], unsigned long ret) {
 
 void	printer_read(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_readahead(unsigned long args[6], unsigned long ret) {
@@ -1639,7 +1640,7 @@ void	printer_rmdir(unsigned long args[6], unsigned long ret) {
 
 void	printer_rseq(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_rt_sigaction(unsigned long args[6], unsigned long ret) {
@@ -1829,7 +1830,7 @@ void	printer_set_mempolicy_home_node(unsigned long args[6], unsigned long ret) {
 
 void	printer_set_robust_list(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_set_thread_area(unsigned long args[6], unsigned long ret) {
@@ -1839,7 +1840,7 @@ void	printer_set_thread_area(unsigned long args[6], unsigned long ret) {
 
 void	printer_set_tid_address(unsigned long args[6], unsigned long ret) {
     (void)args;
-    (void)ret;
+    print_ret(ret);
 }
 
 void	printer_setdomainname(unsigned long args[6], unsigned long ret) {

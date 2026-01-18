@@ -3,3 +3,4 @@ ft_strace
 test
 a.out
 .vscode
+ext_src/syscall_table*.h

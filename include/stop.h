@@ -8,7 +8,8 @@
 #include <stdio.h>			//perror
 #include <stdlib.h>			//exit
 
-#define NO_RETURN_FUNC(x)	(x == 231)
+#define NO_RETURN32(x)	(x == 1 || x == 252)	//exit and exit_group for both
+#define NO_RETURN64(x)	(x == 60 || x == 231)
 
 //stop.c
 struct	user_regs_struct	get_reg_set(pid_t pid);

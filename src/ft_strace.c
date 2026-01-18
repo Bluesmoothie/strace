@@ -96,9 +96,11 @@ void	wait_and_print(pid_t pid) {
 
 	if (sig == (SIGTRAP | 0x80) && event == 0) {
 		if (state == STATE_ENTRY) {
-			if (decode_entry(pid) && !execve)
+			int	decode = decode_entry(pid);
+			if (decode == 1 && !execve)
 				execve = 1;
-			state = STATE_EXIT;
+			if (decode != 2)
+				state = STATE_EXIT;
 		} else {
 			if (execve)
 				decode_exit(pid);

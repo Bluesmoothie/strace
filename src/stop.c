@@ -2,11 +2,27 @@
 
 static unsigned long long	g_syscall_num = 0;
 
-bool	decode_entry(pid_t pid) {
-	g_syscall_num = get_reg_set(pid).orig_rax;
-	if (NO_RETURN_FUNC(g_syscall_num))
-		print_syscall(g_syscall_num, get_reg_set(pid));
-	return(g_syscall_num == 59);
+//Return 1 if execve, -1 if the function doesn't return, 0 if none of the above
+int		decode_entry(pid_t pid) {
+	struct user_regs_struct	regs = get_reg_set(pid);
+	g_syscall_num = regs.orig_rax;
+
+	if ((regs.cs & 0xffff) == 0x33) {			// 0x33 = user 64 bits (long mode)
+		if (g_syscall_num == 59)
+			return (1);
+		if (NO_RETURN64(g_syscall_num)) {
+			print_syscall(g_syscall_num, regs);
+			return (-1);
+		}
+	} else if ((regs.cs & 0xffff) == 0x23) {	// 0x23 = user 32 bits (compat mode)
+		if (g_syscall_num == 11)
+			return (1);
+		if (NO_RETURN32(g_syscall_num)) {
+			print_syscall(g_syscall_num, regs);
+			return (-1);
+		}
+	}
+	return (0);
 }
 
 void	decode_exit(pid_t pid) {

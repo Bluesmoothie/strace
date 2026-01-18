@@ -32,7 +32,7 @@ void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs)
 		syscall = SYSCALL_TABLE32[syscall_num];
 	}
 	if (syscall.name)
-		printf("%s", syscall.name);
+		printf("%s(", syscall.name);
 	else
 		printf("Not implemented yet");
 	if (syscall.printer)
@@ -41,13 +41,20 @@ void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs)
 }
 
 void	print_ret(unsigned long ret) {
-	printf(" = ");
+	printf(") = ");
 	if ((int)ret >= 0)
 		printf("%d", (int)ret);
 	else {
 		printf("-1 ");
 		detail_errno(ret);
 	}
+}
+
+void	print_addr(unsigned long addr) {
+	if (addr == 0)
+		printf("NULL");
+	else
+		printf("0x%lx", addr);
 }
 
 //Very long section, for each function we have:
@@ -72,7 +79,7 @@ void	printer_open(unsigned long args[6], unsigned long ret) {
 //long	sys_close	(unsigned int fd);
 //int	close		(int fd);
 void	printer_close(unsigned long args[6], unsigned long ret) {
-	printf("(%d)", (int)(args[0]));
+	printf("%d", (int)(args[0]));
 	print_ret(ret);
 }
 
@@ -119,8 +126,11 @@ void	printer_munmap(unsigned long args[6], unsigned long ret) {
 //long	sys_brk	(unsigned long brk);
 //int	brk		(void *addr);
 void	printer_brk(unsigned long args[6], unsigned long ret) {
-(void)args;
-(void)ret;
+	print_addr(args[0]);
+	if ((int)ret == -1)
+		print_ret(ret);
+	else
+		printf(") = 0x%lx", ret);
 }
 
 void	printer_rt_sigaction(unsigned long args[6], unsigned long ret) {
@@ -151,6 +161,6 @@ void	printer_pread64(unsigned long args[6], unsigned long ret) {
 //long	sys_execve	(const char __user *filename, 	const char __user *const __user *argv, 	const char __user *const __user *envp);
 //int	execve		(const char *pathname, 			char *const _Nullable argv[], 			char *const _Nullable envp[]);
 void	printer_execve(unsigned long args[6], unsigned long ret) {
-	printf("(%s, %p, %p)", (char*)(args[0]), (void*)(args[1]), (void*)(args[2]));
+	printf("%s, %p, %p", (char*)(args[0]), (void*)(args[1]), (void*)(args[2]));
 	print_ret(ret);
 }

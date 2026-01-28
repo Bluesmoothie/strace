@@ -6,6 +6,13 @@ This project is a Work In Progress
 
 A program to trace all syscalls and signals of another program
 
+## Building
+
+To build run
+```bash
+make
+```
+
 ## Usage
 
 ./ft_strace [PROG]

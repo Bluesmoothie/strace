@@ -18,10 +18,11 @@ On error:
 ```open("/foo/bar", O_RDONLY) = -1 ENOENT```  
   
 On signals (not implemented yet):
-```sigsuspend([] <unfinished ...>
+```
+sigsuspend([] <unfinished ...>
 --- SIGINT {si_signo=SIGINT, si_code=SI_USER, si_pid=...} ---
-+++ killed by SIGINT +++```
-
++++ killed by SIGINT +++
+```
 ## How it works
 
 We use ```ptrace``` syscall to trace the program and get registers when entering and exiting a syscall

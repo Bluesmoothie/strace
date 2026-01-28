@@ -12,9 +12,9 @@ A program to trace all syscalls and signals of another program
 
 ## Result
 
-Strace will show you all syscall like that
-```open("/dev/null", O_RDONLY) = 3```
-On error:
+Strace will show you all syscall like that  
+```open("/dev/null", O_RDONLY) = 3```  
+On error:  
 ```open("/foo/bar", O_RDONLY) = -1 ENOENT```  
   
 On signals (not implemented yet):

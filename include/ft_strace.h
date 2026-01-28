@@ -5,6 +5,8 @@
 #include <sys/wait.h>		//waitpid
 #include <stdio.h>			//perror
 #include <stdlib.h>			//exit
+#include <stdbool.h>		//boolean
+#include <signal.h>			//SIGTRAP, SIG...
 
 typedef enum	e_state {
 	STATE_ENTRY,

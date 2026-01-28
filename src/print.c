@@ -1,5 +1,11 @@
 #include "print.h"
 
+/**
+ * @brief Retrieve arguments values from registers and call the corresponding syscall decoding function
+ * 
+ * @param syscall_num Syscall number
+ * @param regs Register values
+ */
 void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs) {
 	unsigned long	args[6];
 	unsigned long	ret;
@@ -40,6 +46,11 @@ void	print_syscall(unsigned long long syscall_num, struct user_regs_struct regs)
 	printf("\n");
 }
 
+/**
+ * @brief Generic function to print the return value
+ * 
+ * @param ret The return value
+ */
 void	print_ret(unsigned long ret) {
 	printf(") = ");
 	if ((int)ret >= 0)
@@ -50,6 +61,11 @@ void	print_ret(unsigned long ret) {
 	}
 }
 
+/**
+ * @brief Generic function to print an address
+ * 
+ * @param addr The address to print
+ */
 void	print_addr(unsigned long addr) {
 	if (addr == 0)
 		printf("NULL");

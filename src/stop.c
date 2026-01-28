@@ -2,7 +2,12 @@
 
 static unsigned long long	g_syscall_num = 0;
 
-//Return 1 if execve, -1 if the function doesn't return, 0 if none of the above
+/**
+ * @brief Save syscall number from registers to g_syscall_num
+ * 
+ * @param pid The pid of the tracee
+ * @return int 1 if execve, -1 if the function doesn't return, 0 if none of the above
+ */
 int		decode_entry(pid_t pid) {
 	struct user_regs_struct	regs = get_reg_set(pid);
 	g_syscall_num = regs.orig_rax;
@@ -25,6 +30,11 @@ int		decode_entry(pid_t pid) {
 	return (0);
 }
 
+/**
+ * @brief Get registers and send them with g_syscall_num to the printer function
+ * 
+ * @param pid 
+ */
 void	decode_exit(pid_t pid) {
 	print_syscall(g_syscall_num, get_reg_set(pid));
 }
@@ -53,6 +63,12 @@ void	stop_killed(int status) {
 	exit(-1);
 }
 
+/**
+ * @brief Get the reg set object
+ * 
+ * @param pid The pid of the tracee
+ * @return struct user_regs_struct 
+ */
 struct user_regs_struct	get_reg_set(pid_t pid) {
 	struct user_regs_struct	regs;
 	struct iovec			iov;

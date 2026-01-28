@@ -1,5 +1,11 @@
 #include "ft_strace.h"
 
+/**
+ * @brief Fork, launch and trace the program pointed at argv[1]
+ * 
+ * @param argv 
+ * @param envp 
+ */
 void	ft_strace(char** argv, char** envp) {
 	const pid_t	pid = fork();
 
@@ -13,12 +19,23 @@ void	ft_strace(char** argv, char** envp) {
 	trace(pid);
 }
 
+/**
+ * @brief Execve the program, exit on error
+ * 
+ * @param argv 
+ * @param envp 
+ */
 void	exec_child(char** argv, char** envp) {
 	if (execve(argv[0], argv, envp) == -1)
 		perror("ft_strace: execve");
 	exit(-1);
 }
 
+/**
+ * @brief Tracing loop, stop at each syscall enter or exit
+ * 
+ * @param pid The pid of the tracee
+ */
 void	trace(pid_t pid) {
 	init_tracing(pid);
 
@@ -31,6 +48,14 @@ void	trace(pid_t pid) {
 	}
 }
 
+/**
+ * @brief Initialising the tracing
+ *			SEIZE to trace the process, INTERRUPT to pause it
+ * 			catch the signal cause by INTERRUPT (SIGTRAP with PTRACE_EVENT_STOP)
+ *			and setting options
+ * 
+ * @param pid The pid of the tracee
+ */
 void	init_tracing(pid_t pid) {
 	if (ptrace(PTRACE_SEIZE, pid, 0, 0) == -1) {
 		perror("ft_strace: PTRACE_SEIZE");
@@ -75,6 +100,11 @@ void	init_tracing(pid_t pid) {
 	}
 }
 
+/**
+ * @brief Verify the signal origin, decode syscalls
+ * 
+ * @param pid The pid of the tracee
+ */
 void	wait_and_print(pid_t pid) {
 	static int		execve = 0;			// 0 Not seen 1 Just seen 2 Seen before
 	static t_state	state = STATE_ENTRY;

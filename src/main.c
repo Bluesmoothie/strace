@@ -3,6 +3,14 @@
 
 void	ft_strace(char** argv, char** envp);
 
+/**
+ * @brief Verify args and launch strace
+ * 
+ * @param argc 
+ * @param argv 
+ * @param envp 
+ * @return int 
+ */
 int	main(int argc, char** argv, char** envp) {
 	if (argc == 1) {
 		printf("ft_strace: must have PROG\n");

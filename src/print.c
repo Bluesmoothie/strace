@@ -1142,8 +1142,10 @@ void	printer_mlockall(unsigned long args[6], unsigned long ret) {
     (void)ret;
 }
 
+//void *mmap(void addr[.length], size_t length, int prot, int flags,int fd, off_t offset);
 void	printer_mmap(unsigned long args[6], unsigned long ret) {
-    (void)args;
+	print_addr(args[0]);
+	printf(", %ld, %ld, %ld, %d, 0x%lx", args[1], args[2], args[3], (int)args[4], args[5]);
 	printf(") = ");
     print_addr(ret);
 }

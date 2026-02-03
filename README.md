@@ -2,6 +2,8 @@
 
 A program to trace all syscalls and signals of another program
 
+![Screenshot](./strace.png)
+
 ## WIP
 
 This project is a Work In Progress
